@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    input { padding: 10px; margin: 5px; width: 250px; }
+    button { padding: 10px 20px; }
+    #message { color: red; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Sign In</h2>
+  <input type="text" id="email" placeholder="Enter your email" />
+  <button onclick="login()">Login</button>
+  <p id="message"></p>
+
+  <script>
+    // Replace with your list of allowed emails
+    const allowedEmails = ["user1@example.com", "user2@example.com", "user3@example.com"];
+    const redirectURL = "https://sites.google.com/view/YOUR-SITE"; // Change this to your Google Site URL
+
+    function login() {
+      const email = document.getElementById('email').value.trim();
+      if (allowedEmails.includes(email)) {
+        window.location.href = redirectURL;
+      } else {
+        document.getElementById('message').innerText = "Access Denied: Email not found.";
+      }
+    }
+  </script>
+</body>
+</html>
