@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <title>Innovate Agri Login</title>
   <style>
     body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
     input { padding: 10px; margin: 5px; width: 250px; }
@@ -13,20 +13,20 @@
 </head>
 <body>
   <h2>Sign In</h2>
-  <input type="text" id="email" placeholder="Enter your email" />
+  <input type="text" id="token" placeholder="Enter your token" />
   <button onclick="login()">Login</button>
   <p id="message"></p>
 
   <script>
-    const allowedEmails = ['Jo@innovate-agri.co.uk', 'rich@innovate-agri.co.uk', 'matthew@innovate-agri.co.uk', 'simon@innovate-agri.co.uk', 'Leonardgreeff@glosscalm.com'];
+    const allowedTokens = ["IA-001", "IA-002", "IA-003", "IA-004", "IA-005", "IA-006", "IA-007", "IA-008", "IA-009", "IA-010", "IA-011", "IA-012", "IA-013", "IA-014", "IA-015", "IA-016", "IA-017", "IA-018", "IA-019", "IA-020", "IA-021", "IA-022", "IA-023", "IA-024", "IA-025", "IA-026", "IA-027", "IA-028", "IA-029", "IA-030", "IA-031", "IA-032", "IA-033", "IA-034", "IA-035", "IA-036", "IA-037", "IA-038", "IA-039", "IA-040"];
     const redirectURL = "https://sites.google.com/d/1Jf5usXn-WH61GGXCbwdFCyjOAX4qPzxC/p/10uYWAJ0vS7lPwdOHzg2CaxU4gDUZhsGb/edit";
 
     function login() {
-      const email = document.getElementById('email').value.trim();
-      if (allowedEmails.includes(email)) {
+      const token = document.getElementById('token').value.trim().toUpperCase();
+      if (allowedTokens.includes(token)) {
         window.location.href = redirectURL;
       } else {
-        document.getElementById('message').innerText = "Access Denied: Email not found.";
+        document.getElementById('message').innerText = "Access Denied: Invalid token.";
       }
     }
   </script>
