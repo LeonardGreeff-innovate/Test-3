@@ -7,7 +7,7 @@
   <style>
     body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
     input { padding: 10px; margin: 5px; width: 250px; }
-    button { padding: 10px 20px; }
+    button { padding: 10px 20px; cursor: pointer; }
     #message { color: red; margin-top: 10px; }
   </style>
 </head>
@@ -18,9 +18,8 @@
   <p id="message"></p>
 
   <script>
-    // Replace with your list of allowed emails
-    const allowedEmails = ["user1@example.com", "user2@example.com", "user3@example.com"];
-    const redirectURL = "https://sites.google.com/view/YOUR-SITE"; // Change this to your Google Site URL
+    const allowedEmails = ['Jo@innovate-agri.co.uk', 'rich@innovate-agri.co.uk', 'matthew@innovate-agri.co.uk', 'simon@innovate-agri.co.uk', 'Leonardgreeff@glosscalm.com'];
+    const redirectURL = "https://sites.google.com/d/1Jf5usXn-WH61GGXCbwdFCyjOAX4qPzxC/p/10uYWAJ0vS7lPwdOHzg2CaxU4gDUZhsGb/edit";
 
     function login() {
       const email = document.getElementById('email').value.trim();
