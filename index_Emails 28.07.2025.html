@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Innovate Agri Login</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    input { padding: 10px; margin: 5px; width: 250px; }
+    button { padding: 10px 20px; cursor: pointer; }
+    #message { color: red; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Sign In</h2>
+  <input type="email" id="email" placeholder="Enter your email" />
+  <button onclick="login()">Login</button>
+  <p id="message"></p>
+
+  <script>
+    const allowedEmails = ["rich@innovate-agr.co.uk", "matthew@innovate-agri.co.uk", "simon@innovate-agri.co.uk", "simonw@innovate-agri.co.uk", "josh@innovate-agri.co.uk", "ben@innovate-agri.co.uk", "jonathan@innovate-agri.co.uk", "jo.scholes47@gmail.com", "mel@innovate-agri.co.uk", "spencer@innovate-agr.co.uk", "steveagri@live.com", "ross.davison13@gmail.com", "rjack6354@gmail.com", "matthew.smith2007@yahoo.com", "richardjosephmarshall1979.rm@gmail.com", "jordanpotts7530@icloud.com", "stefanclarkewrigth1995@gmail.com", "nathbrittle1987@yahoo.com", "morganjackmankelly@icloud.com", "davidbentley54@icloud.com", "wwadams447@gmail.com", "barrypdunlin@gmail.com", "lindastevecawthorne@gmail.com", "craig.askew@hotmail.co.uk", "adam88cuthbert29@gmail.com", "butteryben1@gmail.com", "kaiyeates12@icloud.com", "metcalfruss1@gmail.com", "1987jamesjones@gmail.com", "jackhawcroft2001@gmail.com", "gwentsbest.dozer@gmail.com", "askewcodi@gmail.com", "jkent9471@gmail.com", "leejaymonaghan02@gmail.com"];
+    const redirectURL = "https://sites.google.com/d/1Jf5usXn-WH61GGXCbwdFCyjOAX4qPzxC/p/10uYWAJ0vS7lPwdOHzg2CaxU4gDUZhsGb/edit";
+
+    function login() {
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      if (allowedEmails.includes(email)) {
+        window.location.href = redirectURL;
+      } else {
+        document.getElementById('message').innerText = "Access Denied: Email not found.";
+      }
+    }
+  </script>
+</body>
+</html>
