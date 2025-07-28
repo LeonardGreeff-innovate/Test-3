@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Innovate Agri - User Check</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    input { padding: 10px; margin: 5px; width: 250px; }
+    button { padding: 10px 20px; cursor: pointer; }
+    #message { margin-top: 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h2>User Lookup</h2>
+  <input type="email" id="email" placeholder="Enter your email" />
+  <button onclick="checkUser()">Check</button>
+  <p id="message"></p>
+
+  <script>
+    const users = [{id: 1, email: "rich@innovate-agr.co.uk"}, {id: 2, email: "matthew@innovate-agri.co.uk"}, {id: 3, email: "simon@innovate-agri.co.uk"}, {id: 4, email: "simonw@innovate-agri.co.uk"}, {id: 5, email: "josh@innovate-agri.co.uk"}, {id: 6, email: "ben@innovate-agri.co.uk"}, {id: 7, email: "jonathan@innovate-agri.co.uk"}, {id: 8, email: "jo.scholes47@gmail.com"}, {id: 9, email: "mel@innovate-agri.co.uk"}, {id: 10, email: "spencer@innovate-agr.co.uk"}, {id: 11, email: "steveagri@live.com"}, {id: 12, email: "ross.davison13@gmail.com"}, {id: 13, email: "rjack6354@gmail.com"}, {id: 14, email: "matthew.smith2007@yahoo.com"}, {id: 15, email: "richardjosephmarshall1979.rm@gmail.com"}, {id: 16, email: "jordanpotts7530@icloud.com"}, {id: 17, email: "stefanclarkewrigth1995@gmail.com"}, {id: 18, email: "nathbrittle1987@yahoo.com"}, {id: 19, email: "morganjackmankelly@icloud.com"}, {id: 20, email: "davidbentley54@icloud.com"}, {id: 21, email: "wwadams447@gmail.com"}, {id: 22, email: "barrypdunlin@gmail.com"}, {id: 23, email: "lindastevecawthorne@gmail.com"}, {id: 24, email: "craig.askew@hotmail.co.uk"}, {id: 25, email: "adam88cuthbert29@gmail.com"}, {id: 26, email: "butteryben1@gmail.com"}, {id: 27, email: "kaiyeates12@icloud.com"}, {id: 28, email: "metcalfruss1@gmail.com"}, {id: 29, email: "1987jamesjones@gmail.com"}, {id: 30, email: "jackhawcroft2001@gmail.com"}, {id: 31, email: "gwentsbest.dozer@gmail.com"}, {id: 32, email: "askewcodi@gmail.com"}, {id: 33, email: "jkent9471@gmail.com"}, {id: 34, email: "leejaymonaghan02@gmail.com"}, {id: 35, email: "leonardgreeff@glosscalm.com"}];
+
+    function checkUser() {
+      const emailInput = document.getElementById('email').value.trim().toLowerCase();
+      const user = users.find(u => u.email === emailInput);
+      if (user) {
+        document.getElementById('message').innerText = "User Number: " + user.id;
+      } else {
+        document.getElementById('message').innerText = "Email not found.";
+      }
+    }
+  </script>
+</body>
+</html>
