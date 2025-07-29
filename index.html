@@ -3,30 +3,83 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Innovate Agri Login</title>
+  <title>Innovate Agri - User Check</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-    input { padding: 10px; margin: 5px; width: 250px; }
-    button { padding: 10px 20px; cursor: pointer; }
-    #message { color: red; margin-top: 10px; }
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; padding: 10px; }
+    input {
+      padding: 20px;
+      margin: 10px;
+      width: 90%;
+      max-width: 400px;
+      font-size: 18px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    #message { margin-top: 20px; font-size: 20px; }
   </style>
 </head>
 <body>
-  <h2>Sign In</h2>
-  <input type="text" id="token" placeholder="Enter your token" />
-  <button onclick="login()">Login</button>
+  <h2>User Email</h2>
+  <input type="email" id="email" placeholder="Enter your email" />
+  <button onclick="checkUser()">Check</button>
   <p id="message"></p>
 
   <script>
-    const allowedTokens = ["IA-001", "IA-002", "IA-003", "IA-004", "IA-005", "IA-006", "IA-007", "IA-008", "IA-009", "IA-010", "IA-011", "IA-012", "IA-013", "IA-014", "IA-015", "IA-016", "IA-017", "IA-018", "IA-019", "IA-020", "IA-021", "IA-022", "IA-023", "IA-024", "IA-025", "IA-026", "IA-027", "IA-028", "IA-029", "IA-030", "IA-031", "IA-032", "IA-033", "IA-034", "IA-035", "IA-036", "IA-037", "IA-038", "IA-039", "IA-040"];
-    const redirectURL = "https://sites.google.com/d/1Jf5usXn-WH61GGXCbwdFCyjOAX4qPzxC/p/10uYWAJ0vS7lPwdOHzg2CaxU4gDUZhsGb/edit";
+    const users = [
+      {id: 1, email: "rich@innovate-agr.co.uk"}, {id: 2, email: "matthew@innovate-agri.co.uk"},
+      {id: 3, email: "simon@innovate-agri.co.uk"}, {id: 4, email: "simonw@innovate-agri.co.uk"},
+      {id: 5, email: "josh@innovate-agri.co.uk"}, {id: 6, email: "ben@innovate-agri.co.uk"},
+      {id: 7, email: "jonathan@innovate-agri.co.uk"}, {id: 8, email: "jo.scholes47@gmail.com"},
+      {id: 9, email: "mel@innovate-agri.co.uk"}, {id: 10, email: "spencer@innovate-agr.co.uk"},
+      {id: 11, email: "steveagri@live.com"}, {id: 12, email: "ross.davison13@gmail.com"},
+      {id: 13, email: "rjack6354@gmail.com"}, {id: 14, email: "matthew.smith2007@yahoo.com"},
+      {id: 15, email: "richardjosephmarshall1979.rm@gmail.com"}, {id: 16, email: "jordanpotts7530@icloud.com"},
+      {id: 17, email: "stefanclarkewrigth1995@gmail.com"}, {id: 18, email: "nathbrittle1987@yahoo.com"},
+      {id: 19, email: "morganjackmankelly@icloud.com"}, {id: 20, email: "davidbentley54@icloud.com"},
+      {id: 21, email: "wwadams447@gmail.com"}, {id: 22, email: "barrypdunlin@gmail.com"},
+      {id: 23, email: "lindastevecawthorne@gmail.com"}, {id: 24, email: "craig.askew@hotmail.co.uk"},
+      {id: 25, email: "adam88cuthbert29@gmail.com"}, {id: 26, email: "butteryben1@gmail.com"},
+      {id: 27, email: "kaiyeates12@icloud.com"}, {id: 28, email: "metcalfruss1@gmail.com"},
+      {id: 29, email: "1987jamesjones@gmail.com"}, {id: 30, email: "jackhawcroft2001@gmail.com"},
+      {id: 31, email: "gwentsbest.dozer@gmail.com"}, {id: 32, email: "askewcodi@gmail.com"},
+      {id: 33, email: "jkent9471@gmail.com"}, {id: 34, email: "leejaymonaghan02@gmail.com"},
+      {id: 35, email: "leonardgreeff@glosscalm.com"}
+    ];
 
-    function login() {
-      const token = document.getElementById('token').value.trim().toUpperCase();
-      if (allowedTokens.includes(token)) {
-        window.location.href = redirectURL;
+    // Google Form logging function (tested)
+    function logEmailToSheet(email) {
+      const formUrl = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScKNE8pZe7AhHRuZR-dcH58iTX34dM3J8mJ1_lXSU7s4J5f0Q/formResponse";
+      const formData = new FormData();
+      formData.append("entry.519245534", email);
+
+      fetch(formUrl, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      }).catch(error => console.error("Logging failed:", error));
+    }
+
+    // Check user function
+    function checkUser() {
+      const emailInput = document.getElementById('email').value.trim().toLowerCase();
+      const user = users.find(u => u.email === emailInput);
+      if (user) {
+        document.getElementById('message').innerText = "Access granted. Redirecting...";
+        // Log to Google Sheet
+        logEmailToSheet(user.email);
+        setTimeout(() => {
+          window.location.href = "https://sites.google.com/view/innovate-agri-employee-hub?usp=sharing";
+        }, 1000);
       } else {
-        document.getElementById('message').innerText = "Access Denied: Invalid token.";
+        document.getElementById('message').innerText = "Email not found.";
       }
     }
   </script>
