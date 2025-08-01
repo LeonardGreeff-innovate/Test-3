@@ -1,9 +1,13 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Innovate Agri - User Check</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="manifest" href="manifest.json">
   <style>
     body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; padding: 10px; }
     input {
@@ -54,7 +58,6 @@
       {id: 35, email: "leonardgreeff@glosscalm.com"}
     ];
 
-    // Google Form logging function (tested)
     function logEmailToSheet(email) {
       const formUrl = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScKNE8pZe7AhHRuZR-dcH58iTX34dM3J8mJ1_lXSU7s4J5f0Q/formResponse";
       const formData = new FormData();
@@ -67,13 +70,11 @@
       }).catch(error => console.error("Logging failed:", error));
     }
 
-    // Check user function
     function checkUser() {
       const emailInput = document.getElementById('email').value.trim().toLowerCase();
       const user = users.find(u => u.email === emailInput);
       if (user) {
         document.getElementById('message').innerText = "Access granted. Redirecting...";
-        // Log to Google Sheet
         logEmailToSheet(user.email);
         setTimeout(() => {
           window.location.href = "https://sites.google.com/view/innovate-agri-employee-hub?usp=sharing";
