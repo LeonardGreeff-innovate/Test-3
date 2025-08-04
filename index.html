@@ -5,18 +5,30 @@
   <title>Innovate Agri - User Check</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="manifest" href="manifest.json">
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; padding: 10px; }
-    input {
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      padding: 10px;
+    }
+    #emailDiv {
       padding: 20px;
       margin: 10px;
       width: 90%;
       max-width: 400px;
       font-size: 18px;
       box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      min-height: 24px;
+      outline: none;
     }
     button {
       padding: 15px 30px;
@@ -27,13 +39,16 @@
       border: none;
       border-radius: 5px;
     }
-    #message { margin-top: 20px; font-size: 20px; }
+    #message {
+      margin-top: 20px;
+      font-size: 20px;
+    }
   </style>
 </head>
 <body>
   <h2>User Email</h2>
-  <input type="email" id="email" placeholder="Enter your email" />
-  <button onclick="checkUser()">Check</button>
+  <div id="emailDiv" contenteditable="true" inputmode="email" autocomplete="email">Enter your email</div>
+  <button id="checkBtn">Check</button>
   <p id="message"></p>
 
   <script>
@@ -72,11 +87,12 @@
     }
 
     function checkUser() {
-      const emailInput = document.getElementById('email').value.trim().toLowerCase();
-      const user = users.find(u => u.email === emailInput);
+      const emailRaw = document.getElementById('emailDiv').innerText.trim().toLowerCase();
+      const email = emailRaw.replace(/\s+/g, ''); // remove any extra spaces or line breaks
+      const user = users.find(u => u.email === email);
       if (user) {
         document.getElementById('message').innerText = "Access granted. Redirecting...";
-        logEmailToSheet(user.email);
+        logEmailToSheet(email);
         setTimeout(() => {
           window.location.href = "https://sites.google.com/view/innovate-agri-employee-hub?usp=sharing";
         }, 1000);
@@ -84,6 +100,27 @@
         document.getElementById('message').innerText = "Email not found.";
       }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // iOS fix to trigger keyboard on tap
+      const editable = document.getElementById("emailDiv");
+      editable.addEventListener("focus", () => {
+        if (editable.innerText === "Enter your email") editable.innerText = "";
+      });
+
+      // Button click listener
+      document.getElementById("checkBtn").addEventListener("click", checkUser);
+
+      // Touch workaround
+      document.addEventListener('touchstart', function () {}, true);
+
+      // Prevent iOS scroll bounce from breaking keyboard
+      document.addEventListener('touchmove', function (e) {
+        if (e.target.tagName !== 'DIV' && e.target.contentEditable !== 'true') {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    });
   </script>
 </body>
 </html>
